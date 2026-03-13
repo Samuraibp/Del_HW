@@ -1,4 +1,6 @@
-﻿namespace Del_HW
+﻿using System.Runtime.CompilerServices;
+
+namespace Del_HW
 {
     internal static class Program
     {
@@ -15,20 +17,22 @@
             Console.WriteLine();
             //Вторая часть
 
+            IntCheck isFibo = MyIsFibonacci;
             int num = 21;
 
-            if (num.MyIsFibonacci())
+            if (isFibo(num))
                 Console.WriteLine("Число Фибоначчи");
             else
                 Console.WriteLine("Не число Фибоначчи");
 
+            // Делегаты для строк
+            StrCheck wordCount = WordCount;
+            StrCheck lastWordLen = LastWordLength;
+
             string str = "Hello world from C sharp";
 
-            Console.WriteLine("Count: " + str.WordCount());
-
-            string line = "Hello world from CSharp";
-
-            Console.WriteLine("Length " + str.LastWordLength());
+            Console.WriteLine("Count: " + wordCount(str));
+            Console.WriteLine("Length of last word: " + lastWordLen(str));
 
 
         }
@@ -106,6 +110,8 @@
         }
 
         //Вторая часть
+        delegate bool IntCheck(int n);
+        delegate int StrCheck(string text);
         public static bool MyIsFibonacci(this int n)
         {
             int a = 0;
